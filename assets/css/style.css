@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    list-style-type: none;
+    background-color: black;
+    color: white;
+    height: 50px;
+    padding-left: 10px;
+    gap: 80px;
+}
+
+.menu-link {
+    color: white;
+    text-decoration: double;
+}
+
+.containerCards {
+    display: flex;
+}
+
+.txtjs, h3 {
+    padding: 10px;
+}
