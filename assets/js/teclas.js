@@ -12,6 +12,8 @@ confCard = (idcaja) => {
 // función para aplicar color a ambas cajas
 colorCard = (idcaja, color) => {
     const caja = document.getElementById(idcaja);
+    console.log(caja)
+    console.log(idcaja)
     caja.style.backgroundColor = color
     console.log('Color a caja desde: ' + idcaja + ', con color: ' + color)
 }
@@ -21,10 +23,10 @@ document.addEventListener('keydown', function (event) {
     if (event.key.toUpperCase() === 'A' || event.key.toUpperCase() === 'S' || event.key.toUpperCase() === 'D' ) {
         const caja = document.getElementById('key')
         if (caja.style.height != '200px'){
-            // Crea caja KEY cuando no existe
+            // Aplicar características a caja con ID = KEY
             confCard('key')
         }
-        // Aplica color a la caja KEY
+        // Asignar color a la caja con ID = KEY
         if (event.key.toUpperCase() === 'A') {
             colores = 'pink'
         } else if (event.key.toUpperCase() === 'S') {
@@ -32,7 +34,7 @@ document.addEventListener('keydown', function (event) {
         } else if (event.key.toUpperCase() === 'D') {
             colores = 'lightblue'
         }
-        console.log('Envía a aplicar color a Key: ' + colores)
+        // Aplicar color a la caja con ID KEY
         colorCard('key', colores)
     }
 })
@@ -41,18 +43,15 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keypress', (event) => {
     const container = document.getElementById('container')
     if (event.key.toUpperCase() === 'Q' || event.key.toUpperCase() === 'W' || event.key.toUpperCase() === 'E' ) {
-        const elementos = container.querySelectorAll('div')
-        console.log(elementos)
-        console.log('cantidad DIV (1): ' + elementos.length)
-        if (elementos.length < 1){
-            // Crea caja CONTAINER cuando no existe
-            let nuevoElemento = document.createElement ('div')
-            container.appendChild(nuevoElemento)
-            console.log(container.firstElementChild)
-            container.firstElementChild.id = 'child'
-            confCard('child')
-        }
-        // Aplica colores a la caja hija del Container
+        // Crea nueva caja
+        let nuevoElemento = document.createElement ('div')
+        container.appendChild(nuevoElemento)
+        elementos = container.querySelectorAll('div')
+        // Asignar ID a la nueva caja
+        nuevoElemento.id = 'div' + (elementos.length-1) 
+        let idcaja = nuevoElemento.id
+
+        // Asignar color a la caja hija del Container
         if (event.key.toUpperCase() === 'Q') {
              colores = 'purple'
          } else if (event.key.toUpperCase() === 'W') {
@@ -60,7 +59,10 @@ document.addEventListener('keypress', (event) => {
          } else if (event.key.toUpperCase() === 'E') {
              colores = 'brown'
          }
-        console.log('Envía a aplicar color a Container-Child: ' + colores)
-        colorCard('child', colores)
+
+        // Aplicar configuración a la nueva caja
+        confCard(idcaja)
+        // Aplicar color a la nueva caja
+        colorCard(idcaja, colores)
     }
 })
